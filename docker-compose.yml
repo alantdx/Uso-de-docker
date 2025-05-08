@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: maya31416
+      POSTGRES_DB: proyecto
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:  # 👈 Nuevo healthcheck
+      test: ["CMD-SHELL", "pg_isready -U postgres -d proyecto"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: antontdrx@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      db:
+        condition: service_healthy  # 👈 Espera hasta que db esté listo
+
+  app:
+    build: .
+    command: tail -f /dev/null  # 👈 Mantiene el contenedor activo
+    depends_on:
+      db:
+        condition: service_healthy  # 👈 Espera a que db esté listo
+    volumes:
+      - .:/app
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=maya31416
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=proyecto
+
+
+volumes:
+  postgres_data:  # Definición explícita del volumen
