@@ -1,7 +1,7 @@
 
 # Sistema ETL para Procesamiento Financiero
 
-## 📋 Descripción
+##  Descripción
 Pipeline ETL completo para procesamiento de datos transaccionales que:
 
 1. Extrae datos desde archivos CSV
@@ -10,19 +10,19 @@ Pipeline ETL completo para procesamiento de datos transaccionales que:
 4. Proporciona monitoreo via PgAdmin
 
 Tecnologías clave:
-- 🐍 Python 3.10
-- 🐘 PostgreSQL 14
-- 🐳 Docker + Docker Compose
-- 🧪 Pytest (100% cobertura)
+-  Python 3.10
+-  PostgreSQL 14
+-  Docker + Docker Compose
+-  Pytest (100% cobertura)
 
-## 🚀 Requisitos Mínimos
+##  Requisitos Mínimos
 | Componente       | Versión  |
 |------------------|----------|
 | Docker           | 20.10+   |
 | Docker Compose   | 2.15+    |
 | RAM disponible   | 4GB      |
 
-## 🛠 Instalación Paso a Paso
+##  Instalación Paso a Paso
 
 ### 1. Clonar repositorio
 ```bash
